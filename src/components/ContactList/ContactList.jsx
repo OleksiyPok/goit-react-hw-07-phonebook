@@ -2,6 +2,8 @@ import { deleteContact } from 'redux/contactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { stateFilterKey } from 'redux/filterSlice';
 
+import { getData } from 'redux/apiReducer';
+
 import { toast } from 'react-toastify';
 
 import {
@@ -9,6 +11,7 @@ import {
   LiStyled,
   SpanStyled,
   ButtonStyled,
+  PStyled,
 } from './ContactList.styled';
 
 const ContactList = () => {
@@ -32,19 +35,31 @@ const ContactList = () => {
   };
 
   const filteredContacts = getFilteredContacts();
+  const filteredContactsLength = filteredContacts.length;
 
   return (
-    <UlStyled>
-      {filteredContacts.map(person => (
-        <LiStyled key={person.id}>
-          <SpanStyled>{person.name}:</SpanStyled>
-          <SpanStyled>{person.number}</SpanStyled>
-          <ButtonStyled onClick={() => handleOnDelete(person)}>
-            Delete
-          </ButtonStyled>
-        </LiStyled>
-      ))}
-    </UlStyled>
+    <>
+      <button
+        onClick={() => {
+          // dispatch({ type: 'backData', payload: 'data from back' });
+          dispatch(getData());
+        }}
+      >
+        thunk
+      </button>
+      <PStyled>Amount of contacts: {filteredContactsLength}</PStyled>
+      <UlStyled>
+        {filteredContacts.map(person => (
+          <LiStyled key={person.id}>
+            <SpanStyled>{person.name}:</SpanStyled>
+            <SpanStyled>{person.number}</SpanStyled>
+            <ButtonStyled onClick={() => handleOnDelete(person)}>
+              Delete
+            </ButtonStyled>
+          </LiStyled>
+        ))}
+      </UlStyled>
+    </>
   );
 };
 

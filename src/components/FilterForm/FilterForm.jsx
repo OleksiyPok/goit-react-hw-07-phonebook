@@ -14,7 +14,7 @@ const FilterForm = () => {
 
   return (
     <Container>
-      <Label>Find contacts by name</Label>
+      <Label>Find contacts by name {}</Label>
       <Input
         type="text"
         name="personName"
