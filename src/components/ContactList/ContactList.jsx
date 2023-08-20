@@ -41,7 +41,6 @@ const ContactList = () => {
     <>
       <button
         onClick={() => {
-          // dispatch({ type: 'backData', payload: 'data from back' });
           dispatch(getData());
         }}
       >
