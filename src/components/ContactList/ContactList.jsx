@@ -2,7 +2,8 @@ import { deleteContact } from 'redux/contactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { stateFilterKey } from 'redux/filterSlice';
 
-import { getData, getData_ } from 'redux/apiReducer';
+// import { getData } from 'redux/apiReducer';
+import { getData_ } from 'redux/apiReducer';
 
 import { toast } from 'react-toastify';
 

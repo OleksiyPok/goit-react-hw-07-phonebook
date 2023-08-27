@@ -26,21 +26,40 @@ const apiSlice = createSlice({
   //     state.error = payload;
   //   },
   // },
-  extraReducers: {
-    [getData_.pending]: state => {
-      state.status = 'pending';
-    },
-    [getData_.fulfilled]: (state, { payload }) => {
-      state.status = 'fulfilled';
-      state.apiData = payload;
-      state.error = '';
 
-      console.log('payload:', payload);
-    },
-    [getData_.rejected]: (state, { payload }) => {
-      state.status = 'rejected';
-      state.error = payload;
-    },
+  // extraReducers: {
+  //   [getData_.pending]: state => {
+  //     state.status = 'pending';
+  //   },
+  //   [getData_.fulfilled]: (state, { payload }) => {
+  //     state.status = 'fulfilled';
+  //     state.apiData = payload;
+  //     state.error = '';
+
+  //     console.log('payload:', payload);
+  //   },
+  //   [getData_.rejected]: (state, { payload }) => {
+  //     state.status = 'rejected';
+  //     state.error = payload;
+  //   },
+  // },
+
+  extraReducers: builder => {
+    builder
+      .addCase(getData_.pending, state => {
+        state.status = 'pending';
+      })
+      .addCase(getData_.fulfilled, (state, { payload }) => {
+        state.status = 'fulfilled';
+        state.apiData = payload;
+        state.error = '';
+
+        console.log('payload:', payload);
+      })
+      .addCase(getData_.rejected, (state, { payload }) => {
+        state.status = 'rejected';
+        state.error = payload;
+      });
   },
 });
 
