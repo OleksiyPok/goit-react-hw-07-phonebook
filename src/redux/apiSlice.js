@@ -10,22 +10,22 @@ const initialState = {
 const apiSlice = createSlice({
   name: 'apiData',
   initialState,
-  reducers: {
-    fetching: state => {
-      state.status = 'pending';
-    },
-    fetchSuccess: (state, { payload }) => {
-      state.status = 'fulfilled';
-      state.apiData = payload;
-      state.error = '';
+  // reducers: {
+  //   fetching: state => {
+  //     state.status = 'pending';
+  //   },
+  //   fetchSuccess: (state, { payload }) => {
+  //     state.status = 'fulfilled';
+  //     state.apiData = payload;
+  //     state.error = '';
 
-      console.log('payload:', payload);
-    },
-    fetchError: (state, { payload }) => {
-      state.status = 'rejected';
-      state.error = payload;
-    },
-  },
+  //     console.log('payload:', payload);
+  //   },
+  //   fetchError: (state, { payload }) => {
+  //     state.status = 'rejected';
+  //     state.error = payload;
+  //   },
+  // },
   extraReducers: {
     [getData_.pending]: state => {
       state.status = 'pending';

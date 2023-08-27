@@ -39,13 +39,13 @@ const ContactList = () => {
 
   return (
     <>
-      <button
+      {/* <button
         onClick={() => {
           dispatch(getData());
         }}
       >
         thunk
-      </button>
+      </button> */}
       <button
         onClick={() => {
           dispatch(getData_());
