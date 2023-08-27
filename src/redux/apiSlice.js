@@ -29,9 +29,15 @@ const apiSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(getData_.pending, handlePending)
+      // .addCase(getData_.pending, handlePending)
       .addCase(getData_.fulfilled, handleFulfilled)
-      .addCase(getData_.rejected, handleRejected);
+      // .addCase(getData_.rejected, handleRejected)
+      .addMatcher(action => {
+        action.type.endwith('/pending');
+      }, handlePending)
+      .addMatcher(action => {
+        action.type.endwith('/rejected');
+      }, handleRejected);
   },
 });
 
