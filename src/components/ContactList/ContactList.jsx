@@ -1,10 +1,9 @@
-import { deleteContact } from 'redux/contactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { stateFilterKey } from 'redux/filterSlice';
-
-import { getData_ } from 'redux/apiReducer';
-
 import { toast } from 'react-toastify';
+
+import { deleteContact } from 'redux/contactsSlice';
+import { selectContactsList, selectFilterKey } from 'redux/selectors';
+import { getData_ } from 'redux/apiReducer';
 
 import {
   UlStyled,
@@ -16,8 +15,8 @@ import {
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.contactsList);
-  const filterKey = useSelector(stateFilterKey);
+  const contactsList = useSelector(selectContactsList);
+  const filterKey = useSelector(selectFilterKey);
 
   const handleOnDelete = contact => {
     dispatch(deleteContact(contact.id));
@@ -25,9 +24,9 @@ const ContactList = () => {
   };
 
   const getFilteredContacts = () => {
-    if (!contacts) return;
+    if (!contactsList) return;
 
-    const filteredPersons = contacts.filter(person => {
+    const filteredPersons = contactsList.filter(person => {
       return person.name.toLowerCase().includes(filterKey);
     });
 
