@@ -1,15 +1,20 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { fetching, fetchSuccess, fetchError } from 'redux/apiSlice';
-import { getFetch } from 'services/ApiService';
+import { getContacts } from 'services/ApiService';
 
 export const getData = () => {
   return async dispatch => {
     try {
-      dispatch(fetching);
-      const data = await getFetch();
-      console.log('data:', data);
+      dispatch(fetching());
+      const data = await getContacts();
       dispatch(fetchSuccess(data));
     } catch (error) {
-      fetchError(error);
+      dispatch(fetchError(error));
     }
   };
 };
+
+export const getData_ = createAsyncThunk('getData', async () => {
+  return await getContacts();
+});

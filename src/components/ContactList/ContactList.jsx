@@ -2,7 +2,7 @@ import { deleteContact } from 'redux/contactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { stateFilterKey } from 'redux/filterSlice';
 
-import { getData } from 'redux/apiReducer';
+import { getData, getData_ } from 'redux/apiReducer';
 
 import { toast } from 'react-toastify';
 
@@ -45,6 +45,13 @@ const ContactList = () => {
         }}
       >
         thunk
+      </button>
+      <button
+        onClick={() => {
+          dispatch(getData_());
+        }}
+      >
+        extra
       </button>
       <PStyled>Amount of contacts: {filteredContactsLength}</PStyled>
       <UlStyled>
