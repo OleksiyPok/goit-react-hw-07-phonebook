@@ -32,11 +32,12 @@ const apiSlice = createSlice({
       // .addCase(getData_.pending, handlePending)
       .addCase(getData_.fulfilled, handleFulfilled)
       // .addCase(getData_.rejected, handleRejected)
+
       .addMatcher(action => {
-        action.type.endwith('/pending');
+        action.type.endsWith('/pending');
       }, handlePending)
       .addMatcher(action => {
-        action.type.endwith('/rejected');
+        action.type.endsWith('/rejected');
       }, handleRejected);
   },
 });
