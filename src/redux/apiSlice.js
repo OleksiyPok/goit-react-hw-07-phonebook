@@ -7,26 +7,31 @@ const initialState = {
   error: '',
 };
 
+const handlePending = state => {
+  state.status = 'pending';
+};
+
+const handleFulfilled = (state, { payload }) => {
+  state.status = 'fulfilled';
+  state.apiData = payload;
+  state.error = '';
+
+  console.log('payload:', payload);
+};
+
+const handleRejected = (state, { payload }) => {
+  state.status = 'rejected';
+  state.error = payload;
+};
+
 const apiSlice = createSlice({
   name: 'apiData',
   initialState,
-
   extraReducers: builder => {
     builder
-      .addCase(getData_.pending, state => {
-        state.status = 'pending';
-      })
-      .addCase(getData_.fulfilled, (state, { payload }) => {
-        state.status = 'fulfilled';
-        state.apiData = payload;
-        state.error = '';
-
-        console.log('payload:', payload);
-      })
-      .addCase(getData_.rejected, (state, { payload }) => {
-        state.status = 'rejected';
-        state.error = payload;
-      });
+      .addCase(getData_.pending, handlePending)
+      .addCase(getData_.fulfilled, handleFulfilled)
+      .addCase(getData_.rejected, handleRejected);
   },
 });
 
