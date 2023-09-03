@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import { deleteContact } from 'redux/contactsSlice';
 import { selectContactsList, selectFilterKey } from 'redux/selectors';
-import { getData_ } from 'redux/contactsReducer';
+import { getData } from 'redux/contactsReducer';
 
 import {
   UlStyled,
@@ -40,7 +40,7 @@ const ContactList = () => {
     <>
       <button
         onClick={() => {
-          dispatch(getData_());
+          dispatch(getData());
         }}
       >
         extra

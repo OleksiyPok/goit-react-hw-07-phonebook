@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getData_ } from './contactsReducer';
+import { getData } from './contactsReducer';
 
 const contactsInitialState = {
   contactsList: [],
@@ -41,7 +41,7 @@ const contactsSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getData_.fulfilled, handleFulfilled)
+      .addCase(getData.fulfilled, handleFulfilled)
       .addMatcher(action => {
         action.type.endsWith('/pending');
       }, handlePending)
