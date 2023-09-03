@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import { deleteContact } from 'redux/contactsSlice';
 import { selectContactsList, selectFilterKey } from 'redux/selectors';
-import { getData_ } from 'redux/apiReducer';
+import { getData_ } from 'redux/contactsReducer';
 
 import {
   UlStyled,

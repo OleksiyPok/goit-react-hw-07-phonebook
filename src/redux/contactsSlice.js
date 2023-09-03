@@ -1,18 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getData_ } from './contactsReducer';
 
 const contactsInitialState = {
-  contactsList: [
-    {
-      name: 'Wayne Wolff',
-      number: '532-501-3575',
-      id: '1',
-    },
-    {
-      name: 'Vicki Lebsack',
-      number: '488-390-2211',
-      id: '2',
-    },
-  ],
+  contactsList: [],
+  status: 'idle',
+  error: '',
+};
+
+const handlePending = state => {
+  state.status = 'pending';
+};
+
+const handleFulfilled = (state, { payload }) => {
+  state.status = 'fulfilled';
+  state.contactsList = payload;
+  state.error = '';
+
+  console.log('payload:', payload);
+};
+
+const handleRejected = (state, { payload }) => {
+  state.status = 'rejected';
+  state.error = payload;
 };
 
 const contactsSlice = createSlice({
@@ -30,8 +39,18 @@ const contactsSlice = createSlice({
       };
     },
   },
+  extraReducers: builder => {
+    builder
+      .addCase(getData_.fulfilled, handleFulfilled)
+      .addMatcher(action => {
+        action.type.endsWith('/pending');
+      }, handlePending)
+      .addMatcher(action => {
+        action.type.endsWith('/rejected');
+      }, handleRejected);
+  },
 });
 
 export const { addContact, deleteContact } = contactsSlice.actions;
-
 export const contactsReducer = contactsSlice.reducer;
+export const { fetching, fetchSuccess, fetchError } = contactsSlice.actions;
