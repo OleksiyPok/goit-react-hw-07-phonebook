@@ -38,13 +38,6 @@ const ContactList = () => {
 
   return (
     <>
-      {/* <button
-        onClick={() => {
-          dispatch(getData());
-        }}
-      >
-        thunk
-      </button> */}
       <button
         onClick={() => {
           dispatch(getData_());
