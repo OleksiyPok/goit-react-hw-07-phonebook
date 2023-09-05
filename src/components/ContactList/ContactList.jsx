@@ -51,9 +51,10 @@ const ContactList = () => {
           <LiStyled key={person.id}>
             <SpanStyled>{person.name}:</SpanStyled>
             <SpanStyled>{person.number}</SpanStyled>
-            <ButtonStyled onClick={() => handleOnDelete(person)}>
+            {/* <ButtonStyled onClick={() => handleOnDelete(person)}>
               Delete
-            </ButtonStyled>
+            </ButtonStyled> */}
+            <ButtonStyled onClick={() => dispatch()}>Thunk</ButtonStyled>
           </LiStyled>
         ))}
       </UlStyled>
