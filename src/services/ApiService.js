@@ -6,3 +6,15 @@ export const getData = async () => {
   const data = await responce.json();
   return data;
 };
+
+export const postData = async () => {
+  // const responce = await fetch(`${BASE_URL}/contacts`);
+  // const data = await responce.json();
+  // return data;
+};
+
+export const deleteData = async () => {
+  // const responce = await fetch(`${BASE_URL}/contacts`);
+  // const data = await responce.json();
+  // return data;
+};

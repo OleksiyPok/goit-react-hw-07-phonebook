@@ -10,7 +10,7 @@ export const getContacts = createAsyncThunk(
 );
 
 export const addContact = createAsyncThunk('contacts/addContact', () => {
-  // return  addData();
+  // return  postData();
 });
 
 export const deleteContact = createAsyncThunk('contacts/deleteContact', () => {

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
-import { addContact } from 'redux/contactsSlice';
+// import { addContact } from 'redux/contactsSlice';
 import { selectContactsList } from 'redux/selectors';
 
 import {
@@ -43,12 +43,12 @@ const ContactForm = () => {
       number: number.value,
     };
 
-    if (contactsList.some(person => newContact.name === person.name)) {
-      toast.error(`${newContact.name} is already in contacts.`);
-    } else {
-      dispatch(addContact(newContact));
-      toast.success(`${newContact.name} has been added to contacts.`);
-    }
+    // if (contactsList.some(person => newContact.name === person.name)) {
+    //   toast.error(`${newContact.name} is already in contacts.`);
+    // } else {
+    //   dispatch(addContact(newContact));
+    //   toast.success(`${newContact.name} has been added to contacts.`);
+    // }
     return currentForm.reset();
   };
 
