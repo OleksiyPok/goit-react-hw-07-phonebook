@@ -26,7 +26,6 @@ const handleGetContacts = (state, { payload }) => {
 };
 
 const handleAddContact = (state, { payload }) => {
-  console.log('!!!!!!!!!!');
   state.status = 'fulfilled';
   state.contactsList = payload;
   state.error = '';
@@ -41,18 +40,18 @@ const handleDeleteContact = (state, { payload }) => {
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
-  reducers: {
-    addContactLocal(state, action) {
-      state.contactsList.push(action.payload);
-    },
-    deleteContactLocal(state, action) {
-      return {
-        contactsList: state.contactsList.filter(
-          contact => contact.id !== action.payload
-        ),
-      };
-    },
-  },
+  // reducers: {
+  //   addContactLocal(state, action) {
+  //     state.contactsList.push(action.payload);
+  //   },
+  //   deleteContactLocal(state, action) {
+  //     return {
+  //       contactsList: state.contactsList.filter(
+  //         contact => contact.id !== action.payload
+  //       ),
+  //     };
+  //   },
+  // },
   extraReducers: builder => {
     builder
       .addCase(getContacts.pending, handlePending)
@@ -78,5 +77,5 @@ const contactsSlice = createSlice({
     // }, handleRejected)
   },
 });
-export const { addContactLocal } = contactsSlice.reducer;
+export const { addContactLocal, deleteContactLocal } = contactsSlice.reducer;
 export const contactsReducer = contactsSlice.reducer;
