@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
-// import { addContact } from 'redux/contactsSlice';
+import { addContact, getContacts } from 'redux/contactsThunk';
 import { selectContactsList } from 'redux/selectors';
 
 import {
@@ -31,29 +31,30 @@ const ContactForm = () => {
       .join(' ');
   };
 
-  const handleSubmit = e => {
+  const handleOnAdd = e => {
     e.preventDefault();
 
     const currentForm = e.target;
     const { name, number } = currentForm.elements;
 
-    const newContact = {
+    const newPerson = {
       id: nanoid(),
       name: normalize(name.value),
       number: number.value,
     };
 
-    // if (contactsList.some(person => newContact.name === person.name)) {
-    //   toast.error(`${newContact.name} is already in contacts.`);
-    // } else {
-    //   dispatch(addContact(newContact));
-    //   toast.success(`${newContact.name} has been added to contacts.`);
-    // }
+    if (contactsList.some(person => newPerson.name === person.name)) {
+      toast.error(`${newPerson.name} is already in contacts.`);
+    } else {
+      dispatch(addContact(newPerson));
+      // dispatch(getContacts());
+      toast.success(`${newPerson.name} has been added to contacts.`);
+    }
     return currentForm.reset();
   };
 
   return (
-    <FormStyled onSubmit={handleSubmit} autocomplete="off">
+    <FormStyled onSubmit={handleOnAdd} autocomplete="off">
       <LabelStyled htmlFor="name">Name</LabelStyled>
       <InputStyled
         type="text"

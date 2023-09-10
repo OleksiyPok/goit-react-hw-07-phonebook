@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { deleteContact, addContact } from 'redux/contactsSlice';
-import { selectContactsList, selectFilterKey } from 'redux/selectors';
 import { getContacts } from 'redux/contactsThunk';
+import { deleteContact } from 'redux/contactsThunk';
+import { selectContactsList, selectFilterKey } from 'redux/selectors';
 
 import {
   UlStyled,
@@ -18,9 +18,14 @@ const ContactList = () => {
   const contactsList = useSelector(selectContactsList);
   const filterKey = useSelector(selectFilterKey);
 
+  const handleOnGet = () => {
+    dispatch(getContacts());
+  };
+
   const handleOnDelete = person => {
-    // dispatch(deleteContact(person.id));
-    // toast.info(`Contact "${person.name}" has been deleted.`);
+    dispatch(deleteContact(person));
+    // dispatch(getContacts());
+    toast.info(`Contact "${person.name}" has been deleted.`);
   };
 
   const getFilteredContacts = () => {
@@ -40,7 +45,7 @@ const ContactList = () => {
     <>
       <button
         onClick={() => {
-          dispatch(getContacts());
+          handleOnGet();
         }}
       >
         extra
@@ -51,11 +56,12 @@ const ContactList = () => {
           <LiStyled key={person.id}>
             <SpanStyled>{person.name}:</SpanStyled>
             <SpanStyled>{person.number}</SpanStyled>
-            {/* <ButtonStyled onClick={() => handleOnDelete(person)}>
+            <ButtonStyled
+              onClick={() => {
+                handleOnDelete(person);
+              }}
+            >
               Delete
-            </ButtonStyled> */}
-            <ButtonStyled onClick={() => handleOnDelete(person)}>
-              Thunk
             </ButtonStyled>
           </LiStyled>
         ))}
