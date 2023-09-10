@@ -6,8 +6,8 @@ export const getData = async () => {
     method: 'GET',
     headers: { 'content-type': 'application/json' },
   });
-  const responceData = await responce.json();
-  return responceData;
+
+  return responce;
 };
 
 export const postData = async data => {

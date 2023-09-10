@@ -1,8 +1,9 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { getContacts } from 'redux/contactsThunk';
-import { deleteContact } from 'redux/contactsThunk';
+import { getContacts } from 'redux/contactsOperations';
+import { deleteContact } from 'redux/contactsOperations';
 import { selectContactsList, selectFilterKey } from 'redux/selectors';
 
 import {
@@ -17,6 +18,10 @@ const ContactList = () => {
   const dispatch = useDispatch();
   const contactsList = useSelector(selectContactsList);
   const filterKey = useSelector(selectFilterKey);
+
+  useEffect(() => {
+    dispatch(getContacts());
+  }, [dispatch]);
 
   const handleOnGet = () => {
     dispatch(getContacts());

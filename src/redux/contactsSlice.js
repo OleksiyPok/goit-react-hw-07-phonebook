@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getContacts } from './contactsThunk';
-// import { addContact, deleteContact } from './contactsThunk';
+import { getContacts } from './contactsOperations';
+import { addContact } from './contactsOperations';
+import { deleteContact } from './contactsOperations';
 
 const contactsInitialState = {
   contactsList: [],
@@ -13,32 +14,29 @@ const handlePending = state => {
   state.status = 'pending';
 };
 
-const handleGetContacts = (state, { payload }) => {
-  state.status = 'fulfilled';
-  state.contactsList = payload;
-  state.error = '';
-
-  // console.log('payload:', payload);
-};
-
 const handleRejected = (state, { payload }) => {
   state.status = 'rejected';
   state.error = payload;
 };
 
-// const handleAddContact = (state, { payload }) => {
-// state.status = 'fulfilled';
-// state.contactsList = payload;
-// state.error = '';
-// console.log('payload:', payload);
-// };
+const handleGetContacts = (state, { payload }) => {
+  state.status = 'fulfilled';
+  state.error = '';
+  state.contactsList = payload;
+};
 
-// const handleDeleteContact = (state, { payload }) => {
-// state.status = 'fulfilled';
-// state.contactsList = payload;
-// state.error = '';
-// console.log('payload:', payload);
-// };
+const handleAddContact = (state, { payload }) => {
+  state.status = 'fulfilled';
+  // state.contactsList = payload;
+  state.error = '';
+
+  console.log('payload:', payload);
+};
+
+const handleDeleteContact = (state, { payload }) => {
+  state.status = 'fulfilled';
+  state.error = '';
+};
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -57,18 +55,28 @@ const contactsSlice = createSlice({
   // },
   extraReducers: builder => {
     builder
-      // .addCase(addContact.fulfilled, handleAddContact)
-      // .addCase(deleteContact.fulfilled, handleDeleteContact)
-
+      .addCase(getContacts.pending, handlePending)
+      .addCase(getContacts.rejected, handleRejected)
       .addCase(getContacts.fulfilled, handleGetContacts)
-      .addMatcher(action => {
-        action.type.endsWith('/pending');
-      }, handlePending)
-      .addMatcher(action => {
-        action.type.endsWith('/rejected');
-      }, handleRejected);
+
+      .addCase(addContact.pending, handlePending)
+      .addCase(addContact.rejected, handleRejected)
+      .addCase(addContact.fulfilled, handleAddContact)
+
+      .addCase(deleteContact.pending, handlePending)
+      .addCase(deleteContact.rejected, handleRejected)
+      .addCase(deleteContact.fulfilled, handleDeleteContact);
+
+    // .addCase(addContact.fulfilled, handleAddContact)
+    // .addCase(deleteContact.fulfilled, handleDeleteContact)
+
+    // .addMatcher(action => {
+    //   action.type.endsWith('/pending');
+    // }, handlePending)
+    // .addMatcher(action => {
+    //   action.type.endsWith('/rejected');
+    // }, handleRejected)
   },
 });
 
-export const { addContact, deleteContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
