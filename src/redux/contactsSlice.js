@@ -3,55 +3,18 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getContacts } from './contactsOperations';
 import { addContact } from './contactsOperations';
 import { deleteContact } from './contactsOperations';
-
-const contactsInitialState = {
-  contactsList: [],
-  status: 'idle',
-  error: '',
-};
-
-const handlePending = state => {
-  state.status = 'pending';
-};
-
-const handleRejected = (state, { payload }) => {
-  state.status = 'rejected';
-  state.error = payload;
-};
-
-const handleGetContacts = (state, { payload }) => {
-  state.status = 'fulfilled';
-  state.error = '';
-  state.contactsList = payload;
-};
-
-const handleAddContact = (state, { payload }) => {
-  state.status = 'fulfilled';
-  state.contactsList = payload;
-  state.error = '';
-};
-
-const handleDeleteContact = (state, { payload }) => {
-  state.status = 'fulfilled';
-  state.contactsList = payload;
-  state.error = '';
-};
+import {
+  handleAddContact,
+  handleDeleteContact,
+  handleGetContacts,
+  handlePending,
+  handleRejected,
+} from './contactsSliceHendlers';
+import { contactsInitialState } from './contactsInitialState';
 
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
-  // reducers: {
-  //   addContactLocal(state, action) {
-  //     state.contactsList.push(action.payload);
-  //   },
-  //   deleteContactLocal(state, action) {
-  //     return {
-  //       contactsList: state.contactsList.filter(
-  //         contact => contact.id !== action.payload
-  //       ),
-  //     };
-  //   },
-  // },
   extraReducers: builder => {
     builder
       .addCase(getContacts.pending, handlePending)
@@ -77,5 +40,5 @@ const contactsSlice = createSlice({
     // }, handleRejected)
   },
 });
-export const { addContactLocal, deleteContactLocal } = contactsSlice.reducer;
+// export const { addContactLocal, deleteContactLocal } = contactsSlice.reducer;
 export const contactsReducer = contactsSlice.reducer;
