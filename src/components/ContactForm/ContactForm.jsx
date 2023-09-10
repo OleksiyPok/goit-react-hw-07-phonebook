@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
-import { addContact } from 'redux/contactsOperations';
 import { selectContactsList } from 'redux/selectors';
+import { addContact } from 'redux/contactsOperations';
 
 import {
   FormStyled,
@@ -47,8 +47,6 @@ const ContactForm = () => {
       toast.error(`${newPerson.name} is already in contacts.`);
     } else {
       dispatch(addContact(newPerson));
-      // dispatch(getContacts());
-      toast.success(`${newPerson.name} has been added to contacts.`);
     }
     return currentForm.reset();
   };

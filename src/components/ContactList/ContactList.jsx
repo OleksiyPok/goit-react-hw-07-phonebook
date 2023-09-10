@@ -1,11 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 
-import { getContacts } from 'redux/contactsOperations';
-import { deleteContact } from 'redux/contactsOperations';
-// import { deleteContactLocal } from 'redux/contactsSlice';
 import { selectContactsList, selectFilterKey } from 'redux/selectors';
+import { getContacts, deleteContact } from 'redux/contactsOperations';
 
 import {
   UlStyled,
@@ -24,13 +21,8 @@ const ContactList = () => {
     dispatch(getContacts());
   }, [dispatch]);
 
-  const handleOnGet = () => {
-    dispatch(getContacts());
-  };
-
   const handleOnDelete = person => {
     dispatch(deleteContact(person));
-    toast.info(`Contact "${person.name}" has been deleted.`);
   };
 
   const getFilteredContacts = () => {
@@ -48,13 +40,6 @@ const ContactList = () => {
 
   return (
     <>
-      <button
-        onClick={() => {
-          handleOnGet();
-        }}
-      >
-        extra
-      </button>
       <PStyled>Amount of contacts: {filteredContactsLength}</PStyled>
       <UlStyled>
         {filteredContacts.map(person => (
