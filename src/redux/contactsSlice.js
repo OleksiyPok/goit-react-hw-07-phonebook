@@ -26,33 +26,33 @@ const handleGetContacts = (state, { payload }) => {
 };
 
 const handleAddContact = (state, { payload }) => {
+  console.log('!!!!!!!!!!');
   state.status = 'fulfilled';
-  // state.contactsList = payload;
+  state.contactsList = payload;
   state.error = '';
-
-  console.log('payload:', payload);
 };
 
 const handleDeleteContact = (state, { payload }) => {
   state.status = 'fulfilled';
+  state.contactsList = payload;
   state.error = '';
 };
 
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
-  // reducers: {
-  //   addContact(state, action) {
-  //     state.contactsList.push(action.payload);
-  //   },
-  //   deleteContact(state, action) {
-  //     return {
-  //       contactsList: state.contactsList.filter(
-  //         contact => contact.id !== action.payload
-  //       ),
-  //     };
-  //   },
-  // },
+  reducers: {
+    addContactLocal(state, action) {
+      state.contactsList.push(action.payload);
+    },
+    deleteContactLocal(state, action) {
+      return {
+        contactsList: state.contactsList.filter(
+          contact => contact.id !== action.payload
+        ),
+      };
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getContacts.pending, handlePending)
@@ -78,5 +78,5 @@ const contactsSlice = createSlice({
     // }, handleRejected)
   },
 });
-
+export const { addContactLocal } = contactsSlice.reducer;
 export const contactsReducer = contactsSlice.reducer;

@@ -19,7 +19,6 @@ export const postData = async data => {
     },
     body: JSON.stringify(data),
   });
-  console.log('responce:', responce);
   return responce;
 };
 
@@ -27,5 +26,6 @@ export const deleteData = async data => {
   const responce = await fetch(`${BASE_URL}/contacts/${data.id}`, {
     method: 'DELETE',
   });
+  // console.log('responce:', responce);
   return responce;
 };

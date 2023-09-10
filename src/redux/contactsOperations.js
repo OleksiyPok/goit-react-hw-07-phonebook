@@ -8,16 +8,14 @@ export const getContacts = createAsyncThunk(
   'contacts/getContacts',
 
   async (_, thunkApi) => {
-    const responce = await getData();
-
     try {
+      const responce = await getData();
+
       if (!responce.ok) {
         throw new Error('Server Error!');
       }
 
-      const responceData = await responce.json();
-
-      return responceData;
+      return responce.json();
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -29,7 +27,19 @@ export const addContact = createAsyncThunk(
 
   async (newPerson, thunkApi) => {
     try {
-      return await postData(newPerson);
+      const responceAdd = await postData(newPerson);
+
+      if (!responceAdd.ok) {
+        throw new Error('Server Error!');
+      }
+
+      const responce = await getData();
+
+      if (!responce.ok) {
+        throw new Error('Server Error!');
+      }
+
+      return await responce.json();
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -41,7 +51,19 @@ export const deleteContact = createAsyncThunk(
 
   async (person, thunkApi) => {
     try {
-      return await deleteData(person);
+      const responceDel = await deleteData(person);
+
+      if (!responceDel.ok) {
+        throw new Error('Server Error!');
+      }
+
+      const responce = await getData();
+
+      if (!responce.ok) {
+        throw new Error('Server Error!');
+      }
+
+      return await responce.json();
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
