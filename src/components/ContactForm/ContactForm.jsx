@@ -3,8 +3,7 @@ import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
 import { selectContactsList } from 'redux/selectors';
-// import { addContact } from 'redux/contactsOperations';
-import { addContact } from 'redux/contactsOperations_axios';
+import { addContact } from 'redux/contactsOperations';
 
 import {
   FormStyled,

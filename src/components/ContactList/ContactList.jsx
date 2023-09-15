@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectContactsList, selectFilterKey } from 'redux/selectors';
-// import { getContacts, deleteContact } from 'redux/contactsOperations';
-import { getContacts, deleteContact } from 'redux/contactsOperations_axios';
+import { getContacts, deleteContact } from 'redux/contactsOperations';
 
 import {
   UlStyled,

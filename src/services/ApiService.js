@@ -7,24 +7,30 @@ export const getData = async () => {
     headers: { 'content-type': 'application/json' },
   });
 
-  return responce;
+  const data = await responce.json();
+  console.log('getData_fetch:', data); // develop
+  return data;
 };
 
-export const postData = async data => {
+export const postData = async newPerson => {
   const responce = await fetch(`${BASE_URL}/contacts`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(newPerson),
   });
-  return responce;
+  const data = await responce.json();
+  console.log('postData_fetch:', data); // develop
+  return data;
 };
 
-export const deleteData = async data => {
-  const responce = await fetch(`${BASE_URL}/contacts/${data.id}`, {
+export const deleteData = async person => {
+  const responce = await fetch(`${BASE_URL}/contacts/${person.id}`, {
     method: 'DELETE',
   });
-  return responce;
+  const data = await responce.json();
+  console.log('deleteData_fetch:', data); // develop
+  return data;
 };
