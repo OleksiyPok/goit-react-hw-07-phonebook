@@ -25,6 +25,7 @@ export const handleDeleteContact = (state, { payload }) => {
 
 export const handlePending = state => {
   state.status = 'pending';
+  console.log(state.status);
 };
 
 export const handleRejected = (state, { payload }) => {

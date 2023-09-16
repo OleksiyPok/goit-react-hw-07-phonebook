@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectFilteredContacts } from 'redux/selectors';
+// import { selectStatus } from 'redux/selectors';
 import { getContacts, deleteContact } from 'redux/contactsOperations';
+// import { Loader } from 'components/Loader/Loader';
 
 import {
   UlStyled,
@@ -14,6 +16,7 @@ import {
 
 const ContactList = () => {
   const dispatch = useDispatch();
+  // const loadStatus = useSelector(selectStatus);
 
   useEffect(() => {
     dispatch(getContacts());
@@ -28,6 +31,8 @@ const ContactList = () => {
 
   return (
     <>
+      {/* <Loader /> */}
+      {/* {loadStatus === 'pending' && <Loader />} */}
       <PStyled>Amount of contacts: {contactsLength}</PStyled>
       <UlStyled>
         {contacts.map(person => (
