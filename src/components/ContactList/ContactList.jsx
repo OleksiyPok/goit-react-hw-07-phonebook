@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectContactsList, selectFilterKey } from 'redux/selectors';
+import { selectFilteredContacts } from 'redux/selectors';
 import { getContacts, deleteContact } from 'redux/contactsOperations';
 
 import {
@@ -14,8 +14,6 @@ import {
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const contactsList = useSelector(selectContactsList);
-  const filterKey = useSelector(selectFilterKey);
 
   useEffect(() => {
     dispatch(getContacts());
@@ -25,24 +23,14 @@ const ContactList = () => {
     dispatch(deleteContact(person));
   };
 
-  const getFilteredContacts = () => {
-    if (!contactsList) return;
-
-    const filteredPersons = contactsList.filter(person => {
-      return person.name.toLowerCase().includes(filterKey);
-    });
-
-    return filteredPersons;
-  };
-
-  const filteredContacts = getFilteredContacts();
-  const filteredContactsLength = filteredContacts.length;
+  const contacts = useSelector(selectFilteredContacts);
+  const contactsLength = contacts.length;
 
   return (
     <>
-      <PStyled>Amount of contacts: {filteredContactsLength}</PStyled>
+      <PStyled>Amount of contacts: {contactsLength}</PStyled>
       <UlStyled>
-        {filteredContacts.map(person => (
+        {contacts.map(person => (
           <LiStyled key={person.id}>
             <SpanStyled>{person.name}:</SpanStyled>
             <SpanStyled>{person.number}</SpanStyled>
