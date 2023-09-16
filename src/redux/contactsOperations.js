@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getData, postData, deleteData } from 'services/ApiService';
+import { getData, postData, deleteData } from 'services/ApiService_fetch';
 // import { getData, postData, deleteData } from 'services/ApiService_axios';
 
 export const getContacts = createAsyncThunk(
@@ -9,7 +9,7 @@ export const getContacts = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const data = await getData();
-      console.log('get data:', data);
+      console.log('get data:', data); // develop
 
       if (!data) {
         throw new Error('Server Error!');
@@ -28,7 +28,7 @@ export const addContact = createAsyncThunk(
   async (newPerson, thunkApi) => {
     try {
       const data = await postData(newPerson);
-      console.log('post data:', data);
+      console.log('post data:', data); // develop
 
       if (!data) {
         throw new Error('Server Error!');
@@ -47,7 +47,7 @@ export const deleteContact = createAsyncThunk(
   async (person, thunkApi) => {
     try {
       const data = await deleteData(person);
-      console.log('delete data:', data);
+      console.log('delete data:', data); // develop
 
       if (!data) {
         throw new Error('Server Error!');
