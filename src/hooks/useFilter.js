@@ -4,7 +4,7 @@ import {
   selectFilterKey,
   selectFilteredContacts,
   selectFilteredAmount,
-} from 'redux/filter/filterSelectors';
+} from 'redux/filter';
 
 export const useFilter = () => {
   return {
