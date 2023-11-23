@@ -1,5 +1,5 @@
 export const contactsInitialState = {
   contactsList: [],
-  status: 'idle',
-  error: '',
+  isLoading: false,
+  error: null,
 };

@@ -1,20 +1,20 @@
 import { toast } from 'react-toastify';
 
 export const handleGetContacts = (state, { payload }) => {
-  state.status = 'fulfilled';
+  state.isLoading = false;
   state.error = '';
   state.contactsList = payload;
 };
 
 export const handleAddContact = (state, { payload }) => {
-  state.status = 'fulfilled';
+  state.isLoading = false;
   state.error = '';
   state.contactsList.push(payload);
   toast.success(`${payload.name} has been added to contacts.`);
 };
 
 export const handleDeleteContact = (state, { payload }) => {
-  state.status = 'fulfilled';
+  state.isLoading = false;
   state.error = '';
 
   state.contactsList = state.contactsList.filter(
@@ -24,11 +24,10 @@ export const handleDeleteContact = (state, { payload }) => {
 };
 
 export const handlePending = state => {
-  state.status = 'pending';
-  console.log(state.status);
+  state.isLoading = false;
 };
 
 export const handleRejected = (state, { payload }) => {
-  state.status = 'rejected';
+  state.isLoading = false;
   state.error = payload;
 };

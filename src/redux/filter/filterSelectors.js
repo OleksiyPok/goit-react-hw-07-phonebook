@@ -1,7 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
+import { selectContactsList } from 'redux/contacts/contactsSelectors';
 
-// export const selectStatus = state => state.contacts.status;
-export const selectContactsList = state => state.contacts.contactsList;
 export const selectFilterKey = state => state.filter.filterKey;
 
 export const selectFilteredContacts = createSelector(
@@ -16,5 +15,12 @@ export const selectFilteredContacts = createSelector(
     filteredContacts.sort((a, b) => a.name.localeCompare(b.name));
 
     return filteredContacts;
+  }
+);
+
+export const selectFilteredAmount = createSelector(
+  [selectFilteredContacts],
+  filteredContacts => {
+    return filteredContacts.length;
   }
 );

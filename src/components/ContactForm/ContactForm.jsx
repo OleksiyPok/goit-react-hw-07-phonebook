@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
-import { selectContactsList } from 'redux/selectors';
+import { useContacts } from 'hooks';
 import { addContact } from 'redux/contacts/contactsOperations';
 
 import {
@@ -14,7 +14,8 @@ import {
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contactsList = useSelector(selectContactsList);
+
+  const { contactsList } = useContacts();
 
   const normalize = sentence => {
     const wordsArr = sentence
