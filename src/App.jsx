@@ -1,11 +1,11 @@
 import { ToastContainer } from 'react-toastify';
-import { toastParams } from './toastify';
+import { toastParams } from './components/toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Section from './Section';
-import ContactForm from './ContactForm';
-import ContactList from './ContactList';
-import FilterForm from './FilterForm';
+import Section from './components/Section';
+import ContactForm from './components/ContactForm';
+import ContactList from './components/ContactList';
+import FilterForm from './components/FilterForm';
 
 const App = () => {
   return (

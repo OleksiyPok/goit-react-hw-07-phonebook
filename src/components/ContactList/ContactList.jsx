@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { selectFilteredContacts } from 'redux/selectors';
 // import { selectStatus } from 'redux/selectors';
-import { getContacts, deleteContact } from 'redux/contactsOperations';
+import { getContacts, deleteContact } from 'redux/contacts/contactsOperations';
 // import { Loader } from 'components/Loader/Loader';
 
 import {
