@@ -10,6 +10,7 @@ export const fetchContacts = createAsyncThunk(
     console.log('fetchContacts =>'); // develop
     try {
       const data = await getData();
+      // console.log('fetchContacts response:', data); // develop
 
       if (!data) {
         throw new Error('Server Error!');
@@ -29,6 +30,7 @@ export const addContact = createAsyncThunk(
     console.log('addContact =>'); // develop
     try {
       const data = await postData(newPerson);
+      // console.log('addContact response:', data); // develop
 
       if (!data) {
         throw new Error('Server Error!');
@@ -48,6 +50,7 @@ export const deleteContact = createAsyncThunk(
     console.log('deleteContact =>'); // develop
     try {
       const data = await deleteData(person);
+      // console.log('deleteContact response:', data); // develop
 
       if (!data) {
         throw new Error('Server Error!');
