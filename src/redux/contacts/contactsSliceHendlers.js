@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-export const handleGetContacts = (state, { payload }) => {
+export const handleFetchContacts = (state, { payload }) => {
   state.isLoading = false;
   state.error = '';
   state.contactsList = payload;
@@ -20,7 +20,7 @@ export const handleDeleteContact = (state, { payload }) => {
   state.contactsList = state.contactsList.filter(
     contact => contact.id !== payload.id
   );
-  toast.info(`Contact "${payload.name}" has been deleted.`);
+  toast.success(`Contact "${payload.name}" has been deleted.`);
 };
 
 export const handlePending = state => {

@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { contactsInitialState } from './contactsInitialState';
-import { getContacts, addContact, deleteContact } from './contactsOperations';
+import { fetchContacts, addContact, deleteContact } from './contactsOperations';
 
 import {
   handleAddContact,
   handleDeleteContact,
-  handleGetContacts,
+  handleFetchContacts,
   handlePending,
   handleRejected,
 } from './contactsSliceHendlers';
@@ -16,7 +16,7 @@ const contactsSlice = createSlice({
   initialState: contactsInitialState,
   extraReducers: builder => {
     builder
-      .addCase(getContacts.fulfilled, handleGetContacts)
+      .addCase(fetchContacts.fulfilled, handleFetchContacts)
       .addCase(addContact.fulfilled, handleAddContact)
       .addCase(deleteContact.fulfilled, handleDeleteContact)
 

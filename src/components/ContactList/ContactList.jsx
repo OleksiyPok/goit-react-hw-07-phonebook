@@ -3,7 +3,10 @@ import { useDispatch } from 'react-redux';
 
 import { useFilter } from 'hooks';
 // import { useContacts } from 'hooks';
-import { getContacts, deleteContact } from 'redux/contacts/contactsOperations';
+import {
+  fetchContacts,
+  deleteContact,
+} from 'redux/contacts/contactsOperations';
 // import { Loader } from 'components/Loader/Loader';
 
 import {
@@ -18,7 +21,7 @@ const ContactList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getContacts());
+    dispatch(fetchContacts());
   }, [dispatch]);
 
   const handleOnDelete = person => {
