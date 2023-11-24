@@ -24,7 +24,7 @@ export const handleDeleteContact = (state, { payload }) => {
 };
 
 export const handlePending = state => {
-  state.isLoading = false;
+  state.isLoading = true;
 };
 
 export const handleRejected = (state, { payload }) => {
