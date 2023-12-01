@@ -2,12 +2,11 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useFilter } from 'hooks';
-// import { useContacts } from 'hooks';
+
 import {
   fetchContacts,
   deleteContact,
 } from 'redux/contacts/contactsOperations';
-// import { Loader } from 'components/Loader/Loader';
 
 import {
   UlStyled,
@@ -28,14 +27,11 @@ const ContactList = () => {
     dispatch(deleteContact(person));
   };
 
-  // const { contactsIsLoading } = useContacts();
   const { filteredContacts: contacts, filteredAmount: contactsLength } =
     useFilter();
 
   return (
     <>
-      {/* <Loader /> */}
-      {/* {!contactsIsLoading && <Loader />} */}
       <PStyled>Amount of contacts: {contactsLength}</PStyled>
       <UlStyled>
         {contacts.map(person => (

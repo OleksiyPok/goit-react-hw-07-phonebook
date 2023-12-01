@@ -1,4 +1,1 @@
-import FilterForm from './FilterForm';
-export default FilterForm;
-
-// export * from './FilterForm';
+export { default } from './FilterForm';
