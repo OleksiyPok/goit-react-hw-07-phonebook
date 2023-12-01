@@ -5,9 +5,7 @@ export const getData = async () => {
     method: 'GET',
     headers: { 'content-type': 'application/json' },
   });
-
   const data = await responce.json();
-  // console.log('getData_fetch:', data); // develop
   return data;
 };
 
@@ -21,7 +19,6 @@ export const postData = async newPerson => {
     body: JSON.stringify(newPerson),
   });
   const data = await responce.json();
-  // console.log('postData_fetch:', data); // develop
   return data;
 };
 
@@ -30,6 +27,5 @@ export const deleteData = async person => {
     method: 'DELETE',
   });
   const data = await responce.json();
-  // console.log('deleteData_fetch:', data); // develop
   return data;
 };
